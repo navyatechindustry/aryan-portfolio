@@ -17,7 +17,7 @@ export const Route = createFileRoute("/")({ component: Index });
 
 function Index() {
   return (
-    <div className="relative min-h-screen overflow-hidden" style={{ background: "#050505" }}>
+    <div className="relative min-h-screen overflow-x-clip" style={{ background: "#050505" }}>
       <MouseGlow />
       <Navbar />
       <Hero />
@@ -39,12 +39,12 @@ function Hero() {
   return (
     <section id="home" className="relative pt-36 pb-24 px-6">
       <div className="absolute inset-0 grid-overlay radial-fade opacity-60" />
-      <div className="absolute top-32 -left-24 w-[500px] h-[500px] rounded-full blur-[140px]"
+      <div className="absolute top-32 -left-24 w-[500px] h-[500px] rounded-full blur-[140px] pointer-events-none"
            style={{ background: "color-mix(in oklab, var(--neon) 25%, transparent)" }} />
-      <div className="absolute bottom-0 right-0 w-[400px] h-[400px] rounded-full blur-[160px] bg-cyan-500/10" />
+      <div className="absolute bottom-0 right-0 w-[400px] h-[400px] rounded-full blur-[160px] bg-cyan-500/10 pointer-events-none" />
 
       <div className="relative max-w-7xl mx-auto grid lg:grid-cols-12 gap-12 items-center">
-        <div className="lg:col-span-7">
+        <div className="lg:col-span-7 z-10">
           <Reveal>
             <span className="inline-flex items-center gap-2 glass px-4 py-1.5 rounded-full text-xs uppercase tracking-widest text-muted-foreground">
               <span className="w-1.5 h-1.5 rounded-full bg-[var(--neon)] animate-pulse-neon" />
@@ -114,8 +114,8 @@ function Hero() {
                   <div className="flex items-center justify-between text-xs text-muted-foreground mb-2">
                     <span>Neural Stack</span><span>v2.5</span>
                   </div>
-                  <div className="flex gap-2">
-                    {["AI", "IoT", "SEC", "ROB"].map((t) => (
+                  <div className="flex flex-wrap gap-2">
+                    {["Arduino", "Raspberry Pi", "AI", "STEM", "ESP", "Node MCU", "Kali Linux", "Burp Suite", "Metasploit", "OSINT"].map((t) => (
                       <span key={t} className="text-[10px] px-2 py-1 rounded-md bg-white/5 border border-white/10">
                         {t}
                       </span>
@@ -164,7 +164,7 @@ function Hero() {
 /* ============ ABOUT ============ */
 function About() {
   const stats = [
-    { v: "2+", l: "Years Experience" },
+    { v: "3+", l: "Years Experience" },
     { v: "100+", l: "Students Mentored" },
     { v: "10+", l: "Technical Projects" },
     { v: "5000+", l: "Awareness Reach" },
@@ -183,15 +183,10 @@ function About() {
           <Reveal className="lg:col-span-3">
             <div className="glass-strong rounded-3xl p-8 md:p-10 h-full">
               <p className="text-foreground/80 leading-relaxed">
-                Aryan Singh is a Technical Trainer specializing in Artificial Intelligence,
-                Robotics, IoT, and Cybersecurity. With experience mentoring students across India,
-                he focuses on practical learning, innovation-driven education, and hands-on project
-                development.
+                I am Aryan Singh, a Technical Trainer specializing in Artificial Intelligence, Robotics, IoT, and Cybersecurity. I have experience mentoring students across India, with a strong focus on practical learning, innovation-driven education, and hands-on project development.
               </p>
               <p className="mt-4 text-muted-foreground leading-relaxed">
-                He has worked as a <span className="text-foreground">Robotics & IoT Trainer at Tech Synix</span> and
-                {" "}<span className="text-foreground">Cybersecurity Trainer & Educational Architect at Extion Infotech</span>,
-                simplifying complex technical concepts into immersive classroom experiences.
+                I have worked as a <span className="text-foreground">Robotics & IoT Trainer at Tech Synix</span> and as a <span className="text-foreground">Cybersecurity Trainer & Educational Architect at Extion Infotech</span>, where I focus on simplifying complex technical concepts into immersive and engaging classroom experiences.
               </p>
               <div className="mt-8 flex flex-wrap gap-2">
                 {["AI", "Robotics", "IoT", "Cybersecurity", "STEM Education"].map((t) => (
@@ -201,13 +196,13 @@ function About() {
             </div>
           </Reveal>
           <Reveal delay={0.1} className="lg:col-span-2">
-            <div className="grid grid-cols-2 gap-4 h-full">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 h-full">
               {stats.map((s, i) => (
                 <motion.div
                   key={s.l}
                   whileHover={{ y: -6 }}
                   className={`glass-strong rounded-3xl p-6 flex flex-col justify-between ${
-                    i === 0 ? "bg-[var(--neon)] text-[var(--primary-foreground)] !border-transparent" : ""
+                    i === 0 ? "bg-[var(--neon)] text-white !border-transparent" : ""
                   }`}
                 >
                   <div className={`text-xs uppercase tracking-widest ${i === 0 ? "opacity-70" : "text-muted-foreground"}`}>
@@ -240,7 +235,7 @@ function Experience() {
         "Developed STEM-focused activities to improve problem-solving and technical creativity.",
         "Conducted workshops and educational sessions on emerging technologies.",
       ],
-      tags: ["Arduino", "Raspberry Pi", "AI", "STEM"],
+      tags: ["Arduino", "Raspberry Pi", "AI", "STEM", "ESP", "Node MCU"],
     },
     {
       role: "Cybersecurity Trainer & Educational Architect",
@@ -329,7 +324,7 @@ function Skills() {
           </p>
         </Reveal>
 
-        <div className="mt-14 grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {cats.map((c, i) => (
             <Reveal key={c.title} delay={i * 0.07}>
               <motion.div
@@ -384,14 +379,14 @@ function Process() {
           {steps.map((s, i) => (
             <Reveal key={s.title} delay={i * 0.08}>
               <motion.div whileHover={{ y: -6 }}
-                className="relative glass-strong rounded-3xl p-6 h-44 overflow-hidden group">
-                <div className="absolute right-4 bottom-2 font-display font-bold text-[5rem] leading-none text-white/[0.06] group-hover:text-[var(--neon)]/20 transition-colors">
+                className="relative glass-strong rounded-3xl p-6 min-h-[11rem] overflow-hidden group flex flex-col justify-between gap-6">
+                <div className="absolute right-4 bottom-2 font-display font-bold text-[5rem] leading-none text-white/[0.06] group-hover:text-[var(--neon)]/20 transition-colors pointer-events-none">
                   0{i + 1}.
                 </div>
-                <div className="w-11 h-11 rounded-xl bg-[var(--neon)] text-[var(--primary-foreground)] flex items-center justify-center">
+                <div className="w-11 h-11 shrink-0 rounded-xl bg-[var(--neon)] text-[var(--primary-foreground)] flex items-center justify-center relative z-10">
                   <s.Icon className="w-5 h-5" />
                 </div>
-                <div className="absolute bottom-5 left-6 right-6">
+                <div className="relative z-10">
                   <div className="font-display text-lg font-bold">{s.title}</div>
                   <div className="text-xs text-muted-foreground mt-1">{s.desc}</div>
                 </div>
@@ -413,6 +408,7 @@ function Projects() {
       tags: ["AI", "IoT", "Robotics", "Sensors", "GPS"],
       gradient: "from-[var(--neon)]/30 via-cyan-500/20 to-blue-500/20",
       image: projectDrone,
+      link: "https://github.com/navyatechindustry/resqron.git",
     },
     {
       title: "Smart Home Automation System",
@@ -451,7 +447,7 @@ function Projects() {
           </div>
         </Reveal>
 
-        <div className="mt-12 grid lg:grid-cols-3 gap-5">
+        <div className="mt-12 grid md:grid-cols-2 lg:grid-cols-3 gap-5">
           {featured.map((p, i) => (
             <Reveal key={p.title} delay={i * 0.08}>
               <motion.div whileHover={{ y: -8 }}
@@ -470,9 +466,9 @@ function Projects() {
                 <div className="p-6">
                   <div className="flex items-start justify-between gap-4">
                     <h3 className="font-display text-xl font-bold">{p.title}</h3>
-                    <button className="w-10 h-10 shrink-0 rounded-full glass flex items-center justify-center group-hover:bg-[var(--neon)] group-hover:text-[var(--primary-foreground)] transition-colors">
+                    <a href={p.link || "#"} target={p.link ? "_blank" : undefined} rel={p.link ? "noreferrer" : undefined} className="w-10 h-10 shrink-0 rounded-full glass flex items-center justify-center group-hover:bg-[var(--neon)] group-hover:text-[var(--primary-foreground)] transition-colors">
                       <ArrowUpRight className="w-4 h-4" />
-                    </button>
+                    </a>
                   </div>
                   <p className="mt-3 text-sm text-muted-foreground">{p.desc}</p>
                   <div className="mt-4 flex flex-wrap gap-2">
@@ -664,13 +660,13 @@ function ContactRow({ Icon, label, value, href }: { Icon: typeof Mail; label: st
   const Wrap: any = href ? "a" : "div";
   return (
     <Wrap href={href} target={href?.startsWith("http") ? "_blank" : undefined} rel="noreferrer"
-      className="flex items-center gap-4 group">
-      <div className="w-11 h-11 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-[var(--neon)] group-hover:text-[var(--primary-foreground)] transition-colors">
+      className="flex items-center gap-4 group overflow-hidden">
+      <div className="w-11 h-11 shrink-0 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-[var(--neon)] group-hover:text-[var(--primary-foreground)] transition-colors">
         <Icon className="w-4 h-4" />
       </div>
-      <div>
-        <div className="text-xs uppercase tracking-widest text-muted-foreground">{label}</div>
-        <div className="text-sm font-medium">{value}</div>
+      <div className="min-w-0">
+        <div className="text-xs uppercase tracking-widest text-muted-foreground truncate">{label}</div>
+        <div className="text-sm font-medium truncate">{value}</div>
       </div>
     </Wrap>
   );
